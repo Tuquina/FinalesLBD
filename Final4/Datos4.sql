@@ -1,4 +1,4 @@
-USE ExamenLBD2018;
+USE final4;
 
 -- delete from RolesEnTrabajos;
 -- delete from AlumnosEnTrabajos;

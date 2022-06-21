@@ -1,4 +1,4 @@
-USE ExamenLBD2019;
+USE `final3` ;
 
 -- DELETE FROM Habilidades;
 -- DELETE FROM Personas;

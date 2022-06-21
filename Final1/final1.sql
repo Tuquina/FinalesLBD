@@ -12,7 +12,7 @@
 -- Apartado 1: Creación de la BD
 -- -----------------------------------------------------
 
-DROP DATABASE final1;
+DROP DATABASE IF EXISTS final1;
 
 -- Creación de BD en MySQL
 
@@ -33,13 +33,13 @@ CREATE TABLE IF NOT EXISTS Peliculas(
     duracion		INTEGER			NULL,
     clasificacion	VARCHAR(10)		DEFAULT 'G' NOT NULL
     CHECK 			(clasificacion = 'G' OR clasificacion = 'PG' OR clasificacion = 'PG-13' OR clasificacion = 'R' OR clasificacion = 'NC-17'),
-    PRIMARY KEY (idPelicula)
-)ENGINE=INNODB
+    PRIMARY KEY (idPelicula),
+    UNIQUE INDEX UI_Peliculas_titulo(titulo)
+    )ENGINE=INNODB
 ;
 
 -- INDEX: UI_Peliculas
-CREATE UNIQUE INDEX UI_Peliculas ON Peliculas(titulo)
-;
+-- CREATE UNIQUE INDEX UI_Peliculas ON Peliculas(titulo);
 
 -- 
 -- TABLE: Direcciones
@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS Personal(
     estado		 	CHAR(1)			DEFAULT 'E' NOT NULL
     CHECK			(estado = 'E' OR estado = 'D'),
     PRIMARY KEY (idPersonal),
+	INDEX `FK_idDireccionPersonal_idx` (idDireccion),
     CONSTRAINT `FK_idDireccionPersonal`
 		FOREIGN KEY (idDireccion)
 		REFERENCES Direcciones(idDireccion)
